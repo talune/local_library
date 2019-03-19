@@ -16,6 +16,16 @@ class Genre(models.Model):
         """String for representing the Model object."""
         return self.name
 
+class Language(models.Model):
+		"""Model representing a Language (e.g., Japanese, French, English)"""
+
+		name = models.CharField(max_length=150, help_text="Enter the book's natural language")
+
+		def __str__(self):
+			"""String for representing the Model object."""
+			return self.name
+
+
 
 class Book(models.Model):
     """Model representing a book (but not a specific copy of a book)"""
@@ -27,6 +37,7 @@ class Book(models.Model):
     # Author as a string rather than object because it hasn't been declared yet
     # in the file
     author = models.ForeignKey("Author", on_delete=models.SET_NULL, null=True)
+    language = models.ForeignKey("Language", on_delete=models.SET_NULL, null=True)
 
     summary = models.TextField(
         max_length=1000, help_text="Enter a brief description of the book"
