@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+black = "==18.9b0"
+flake8-import-order = "==0.18"
+flake8-docstrings = "*"
+bandit = "*"
+autopep8 = "*"
+isort = "*"
+
+[packages]
+
+[requires]
+python_version = "3.7"
