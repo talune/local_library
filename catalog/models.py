@@ -1,8 +1,7 @@
 import uuid  # Required for unique book instances
 
 from django.db import models
-from django.urls import \
-    reverse  # Used to generate URLS by reversing the URL patterns
+from django.urls import reverse  # Used to generate URLS by reversing the URL patterns
 
 
 class Genre(models.Model):
@@ -16,15 +15,17 @@ class Genre(models.Model):
         """String for representing the Model object."""
         return self.name
 
+
 class Language(models.Model):
-		"""Model representing a Language (e.g., Japanese, French, English)"""
+    """Model representing a Language (e.g., Japanese, French, English)"""
 
-		name = models.CharField(max_length=150, help_text="Enter the book's natural language")
+    name = models.CharField(
+        max_length=150, help_text="Enter the book's natural language"
+    )
 
-		def __str__(self):
-			"""String for representing the Model object."""
-			return self.name
-
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.name
 
 
 class Book(models.Model):
@@ -60,6 +61,12 @@ class Book(models.Model):
     def get_absolute_url(self):
         """Return the url to access a detail record for this book."""
         return reverse("book-detail", args=[str(self.id)])
+
+    def display_genre(self):
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ", ".join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = "Genre"
 
 
 class BookInstance(models.Model):
