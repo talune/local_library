@@ -11,6 +11,7 @@ flake8-docstrings = "*"
 bandit = "*"
 autopep8 = "*"
 isort = "*"
+ipython = "*"
 
 [packages]
 
